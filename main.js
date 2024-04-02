@@ -62,14 +62,15 @@ let resultMessage = "";
 
 function checkForMatch() {
   const cards = document.querySelectorAll("img");
-  const optionOneId = cardsChosen[0];
-  const optionTwoId = cardsChosen[1];
+  const optionOneId = cardsChosenId[0];
+  const optionTwoId = cardsChosenId[1];
 
   if (optionOneId == optionTwoId) {
     cards[optionOneId].setAttribute("src", "images/blank.png");
     cards[optionTwoId].setAttribute("src", "images/blank.png");
     resultMessage = "You clicked the same image! Choose again!";
   } else if (cardsChosen[0] === cardsChosen[1]) {
+    console.log("a");
     cards[optionOneId].setAttribute("src", "images/white.png");
     cards[optionTwoId].setAttribute("src", "images/white.png");
     cards[optionOneId].removeEventListener("click", flipCard);
@@ -80,6 +81,7 @@ function checkForMatch() {
     cards[optionOneId].setAttribute("src", "images/blank.png");
     cards[optionTwoId].setAttribute("src", "images/blank.png");
     resultMessage = "Wrong match! Try again!";
+    console.log("b");
   }
   cardsChosen = [];
   cardsChosenId = [];
@@ -90,6 +92,6 @@ function checkForMatch() {
 }
 
 function render() {
-  scoreDisplay.textContent = cardsWon.length;
+  scoreDisplay.textContent = `Score: ${cardsWon.length}`;
   resultDisplay.textContent = resultMessage;
 }
