@@ -1,70 +1,95 @@
 /*----- constants -----*/
-const picture = [
-  "https://picsum.photos/id/8/5000/3333",
-  "https://picsum.photos/id/49/1280/792",
+const cardArray = [
+  { name: "1", img: "images/1.jpeg" },
+  { name: "2", img: "images/2.jpeg" },
+  { name: "3", img: "images/3.jpeg" },
+  { name: "4", img: "images/4.jpeg" },
+  { name: "5", img: "images/5.jpeg" },
+  { name: "6", img: "images/6.jpeg" },
+  { name: "1", img: "images/1.jpeg" },
+  { name: "2", img: "images/2.jpeg" },
+  { name: "3", img: "images/3.jpeg" },
+  { name: "4", img: "images/4.jpeg" },
+  { name: "5", img: "images/5.jpeg" },
+  { name: "6", img: "images/6.jpeg" },
 ];
-const WINNING_COMBOS = [];
-const gameStatus = ["Start", "RightContinue", "WrongContinue", "End"];
-/* 
-Game Status:
-Start: choose two pictures;
-RightContinue: these two pictures are matched;
-WrongContinue: these two pictures are not matched;
-End: you match all pictures, win the game 
-*/
-
-console.log(picture);
 
 /*----- state variables -----*/
-let board;
+let cardsChosen = [];
+let cardsChosenId = [];
+let cardsWon = [];
 
 /*----- cached elements  -----*/
-const message = document.querySelector("h1");
-const playAgainBtn = document.querySelector("button");
+const grid = document.querySelector(".grid");
+const resultDisplay = document.querySelector("#result");
+const scoreDisplay = document.querySelector("#score");
 
 /*----- event listeners -----*/
-document.getElementById("board").addEventListener("click", handleShow);
-playAgainBtn.addEventListener("click", initialize);
 
 /*----- functions -----*/
 initialize();
 
 function initialize() {
-  console.log("initialize");
-  board = [picture[1], picture[2], picture[1], picture[2]];
-  gameStatu = gameStatus[0];
-  render();
+  shuffleCard();
+  createBoard();
 }
 
-function handleShow(evt) {
-  console.log(evt);
-  console.log("handleShow");
-  checkGameResult;
-  render();
+function shuffleCard() {
+  cardArray.sort(() => 0.5 - Math.random());
 }
 
-function checkGameResult() {
-  console.log("checkgameresult");
+function createBoard() {
+  for (let i = 0; i < cardArray.length; i++) {
+    const card = document.createElement("img");
+    card.setAttribute("src", "images/blank.png");
+    card.setAttribute("data-id", i);
+    card.addEventListener("click", flipCard);
+    grid.appendChild(card);
+  }
+}
+
+function flipCard() {
+  let cardId = this.getAttribute("data-id");
+  cardsChosen.push(cardArray[cardId].name);
+  cardsChosenId.push(cardId);
+  this.setAttribute("src", cardArray[cardId].img);
+  if (cardsChosen.length === 2) {
+    setTimeout(checkForMatch, 600);
+  }
+}
+
+let resultMessage = "";
+
+function checkForMatch() {
+  const cards = document.querySelectorAll("img");
+  const optionOneId = cardsChosen[0];
+  const optionTwoId = cardsChosen[1];
+
+  if (optionOneId == optionTwoId) {
+    cards[optionOneId].setAttribute("src", "images/blank.png");
+    cards[optionTwoId].setAttribute("src", "images/blank.png");
+    resultMessage = "You clicked the same image! Choose again!";
+  } else if (cardsChosen[0] === cardsChosen[1]) {
+    cards[optionOneId].setAttribute("src", "images/white.png");
+    cards[optionTwoId].setAttribute("src", "images/white.png");
+    cards[optionOneId].removeEventListener("click", flipCard);
+    cards[optionTwoId].removeEventListener("click", flipCard);
+    cardsWon.push(cardsChosen);
+    resultMessage = "You found a match! Continue!";
+  } else {
+    cards[optionOneId].setAttribute("src", "images/blank.png");
+    cards[optionTwoId].setAttribute("src", "images/blank.png");
+    resultMessage = "Wrong match! Try again!";
+  }
+  cardsChosen = [];
+  cardsChosenId = [];
+  if (cardsWon.length === cardArray.length / 2) {
+    resultMessage = "Congratulations! You matched all the cards!";
+  }
+  render();
 }
 
 function render() {
-  renderBoard();
-  renderMessage();
-}
-
-function renderBoard() {
-  console.log("renderBoard");
-}
-
-function renderMessage() {
-  console.log("renderMessage");
-  if (gameStatu === gameStatus[0]) {
-    console.log("game status is start");
-  } else if (gameStatu === gameStatus[1]) {
-    console.log("game status is right continue");
-  } else if (gameStatu === gameStatus[2]) {
-    console.log("game status is wrong continue");
-  } else if (gameStatu === gameStatus[3]) {
-    console.log("game status is end");
-  }
+  scoreDisplay.textContent = cardsWon.length;
+  resultDisplay.textContent = resultMessage;
 }
