@@ -13,6 +13,7 @@ const cardArray = [
   { name: "5", img: "images/5.jpeg" },
   { name: "6", img: "images/6.jpeg" },
 ];
+
 const resultMessages = {
   sameCard: "You clicked the same card! Choose again!",
   match: "You found a match! Continue!",
@@ -24,7 +25,6 @@ const resultMessages = {
 let cardsChosen = [];
 let cardsChosenId = [];
 let cardsWon = [];
-let resultMessage;
 
 /*----- cached elements  -----*/
 const grid = document.querySelector(".grid");
