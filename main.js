@@ -13,11 +13,18 @@ const cardArray = [
   { name: "5", img: "images/5.jpeg" },
   { name: "6", img: "images/6.jpeg" },
 ];
+const resultMessages = {
+  sameCard: "You clicked the same card! Choose again!",
+  match: "You found a match! Continue!",
+  wrongMatch: "Wrong match! Try again!",
+  win: "Congratulations! You matched all the cards!",
+};
 
 /*----- state variables -----*/
 let cardsChosen = [];
 let cardsChosenId = [];
 let cardsWon = [];
+let resultMessage;
 
 /*----- cached elements  -----*/
 const grid = document.querySelector(".grid");
@@ -58,35 +65,27 @@ function flipCard() {
   }
 }
 
-let resultMessage = "";
-
 function checkForMatch() {
   const cards = document.querySelectorAll("img");
   const optionOneId = cardsChosenId[0];
   const optionTwoId = cardsChosenId[1];
 
   if (optionOneId == optionTwoId) {
-    cards[optionOneId].setAttribute("src", "images/blank.png");
-    cards[optionTwoId].setAttribute("src", "images/blank.png");
-    resultMessage = "You clicked the same image! Choose again!";
+    unFlipCard(cards);
+    resultMessage = resultMessages.sameCard;
   } else if (cardsChosen[0] === cardsChosen[1]) {
-    console.log("a");
-    cards[optionOneId].setAttribute("src", "images/white.png");
-    cards[optionTwoId].setAttribute("src", "images/white.png");
-    cards[optionOneId].removeEventListener("click", flipCard);
-    cards[optionTwoId].removeEventListener("click", flipCard);
+    setWhiteCard(cards);
+    removeCardEvent(cards);
     cardsWon.push(cardsChosen);
-    resultMessage = "You found a match! Continue!";
+    resultMessage = resultMessages.match;
   } else {
-    cards[optionOneId].setAttribute("src", "images/blank.png");
-    cards[optionTwoId].setAttribute("src", "images/blank.png");
-    resultMessage = "Wrong match! Try again!";
-    console.log("b");
+    unFlipCard(cards);
+    resultMessage = resultMessages.wrongMatch;
   }
   cardsChosen = [];
   cardsChosenId = [];
   if (cardsWon.length === cardArray.length / 2) {
-    resultMessage = "Congratulations! You matched all the cards!";
+    resultMessage = resultMessages.win;
   }
   render();
 }
@@ -94,4 +93,22 @@ function checkForMatch() {
 function render() {
   scoreDisplay.textContent = `Score: ${cardsWon.length}`;
   resultDisplay.textContent = resultMessage;
+}
+
+function unFlipCard(cards) {
+  cardsChosenId.forEach((i) => {
+    cards[i].setAttribute("src", "images/blank.png");
+  });
+}
+
+function setWhiteCard(cards) {
+  cardsChosenId.forEach((i) => {
+    cards[i].setAttribute("src", "images/white.png");
+  });
+}
+
+function removeCardEvent(cards) {
+  cardsChosenId.forEach((i) => {
+    cards[i].removeEventListener("click", flipCard);
+  });
 }
