@@ -10,3 +10,5 @@ Players need to match all the pictures in the shortest time possible
 As a player, I can start the game, so I can play.
 As a player, I can turn two cards each attempts to check the pictures, so I will know if I am right or wrong.
 As a player, I need to match all the pictures in the shortest time possible, so I will finish the game.
+
+HTML, CSS, JavaScript, DOM, MVC
