@@ -1,6 +1,6 @@
 /*----- constants -----*/
 
-// 12 cards array
+// twelve cards array
 const cardArray = [
   { name: "1", img: "images/1.jpeg" },
   { name: "2", img: "images/2.jpeg" },
@@ -16,13 +16,15 @@ const cardArray = [
   { name: "6", img: "images/6.jpeg" },
 ];
 
-/* 4 game status:
-  1. choose the same card;
-  2. match two cards;
-  3. wrong match;
-  4. match all cards, finish the game;
+/* five game status:
+  1. game start;
+  2. choose the same card;
+  3. match two cards;
+  4. wrong match;
+  5. match all cards, finish the game;
 */
 const resultMessages = {
+  startGame: "Game start! Choose two cards!",
   sameCard: "You clicked the same card! Choose again!",
   match: "You found a match! Continue!",
   wrongMatch: "Wrong match! Try again!",
@@ -31,11 +33,13 @@ const resultMessages = {
 
 /*----- state variables -----*/
 // store two cards chose by player
-let cardsChosen = [];
+let cardsChosen;
 // store two cards ID chose by player
-let cardsChosenId = [];
+let cardsChosenId;
 // store all matched cards
 let cardsWon = [];
+// show game status
+let resultMessage = resultMessages.startGame;
 
 /*----- cached elements  -----*/
 const grid = document.querySelector(".grid");
@@ -50,6 +54,13 @@ initialize();
 function initialize() {
   shuffleCard();
   createBoard();
+  initTemVariables();
+  render();
+}
+
+function initTemVariables() {
+  cardsChosen = [];
+  cardsChosenId = [];
 }
 
 function shuffleCard() {
@@ -71,6 +82,7 @@ function flipCard() {
   cardsChosen.push(cardArray[cardId].name);
   cardsChosenId.push(cardId);
   this.setAttribute("src", cardArray[cardId].img);
+
   // if player choose two cards, call checkForMatch function
   if (cardsChosen.length === 2) {
     setTimeout(checkForMatch, 600);
@@ -94,18 +106,14 @@ function checkForMatch() {
     cardsWon.push(cardsChosen);
     resultMessage = resultMessages.match;
   }
-  // condition 2: if two cards don't match, unflip cards
+  // condition 3: if two cards don't match, unflip cards
   else {
     unFlipCard(cards);
     resultMessage = resultMessages.wrongMatch;
   }
 
-  cardsChosen = [];
-  cardsChosenId = [];
-
-  if (cardsWon.length === cardArray.length / 2) {
-    resultMessage = resultMessages.win;
-  }
+  initTemVariables();
+  checkForWin();
   render();
 }
 
@@ -127,7 +135,13 @@ function removeCardEvent(cards) {
   });
 }
 
+function checkForWin() {
+  if (cardsWon.length === cardArray.length / 2) {
+    resultMessage = resultMessages.win;
+  }
+}
+
 function render() {
-  scoreDisplay.textContent = `Score: ${cardsWon.length}`;
+  scoreDisplay.textContent = `Pairs you matched: ${cardsWon.length}`;
   resultDisplay.textContent = resultMessage;
 }

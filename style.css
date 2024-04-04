@@ -3,8 +3,8 @@
   flex-wrap: wrap;
   width: 600px;
   height: 600px;
-  justify-content: center;
-  align-items: stretch;
+  /* justify-content: center;
+  align-items: stretch; */
 }
 
 img {
@@ -14,4 +14,5 @@ img {
 
 body {
   text-align: center;
+  /* background-color: darkgrey; */
 }
