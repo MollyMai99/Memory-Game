@@ -32,15 +32,15 @@ Our memory game utilizes a combination of modern web technologies and methodolog
 
 The rules of the game are simple yet engaging:
 
-1. Objective: The objective of the game is to match pairs of identical tourist attraction photos by flipping over cards to find their corresponding matches.
+- **Objective**: The objective of the game is to match pairs of identical tourist attraction photos by flipping over cards to find their corresponding matches.
 
-2. Gameplay: Players will be presented with a grid of cards, each containing a hidden photo of a tourist attraction. Players can click on any two cards to reveal the photos underneath. If the photos match, the cards diasppear. If not, the cards are flipped face-down again, and players must try to remember the locations of the photos for future turns.
+- **Gameplay**: Players will be presented with a grid of cards, each containing a hidden photo of a tourist attraction. Players can click on any two cards to reveal the photos underneath. If the photos match, the cards diasppear. If not, the cards are flipped face-down again, and players must try to remember the locations of the photos for future turns.
 
-3. Victory: The game is won when all pairs of tourist attraction photos have been successfully matched.
+- **Victory**: The game is won when all pairs of tourist attraction photos have been successfully matched.
 
 ## Game Link
 
-You can play the memory game [here](memory-game-gamma-six.vercel.app).
+You can play the memory game [here](https://memory-game-gamma-six.vercel.app/).
 
 ## Next Steps
 
