@@ -12,20 +12,21 @@ Images of your actual game.
 
 Our memory game utilizes a combination of modern web technologies and methodologies to deliver an engaging and seamless gaming experience. The key technologies and methods employed in the development of this game include:
 
-1. HTML (Hypertext Markup Language): The backbone of our game's structure, HTML is used to create the layout and define the structure of the game interface.
+- **HTML (Hypertext Markup Language)**: The backbone of our game's structure, HTML is used to create the layout and define the structure of the game interface.
 
-2. CSS (Cascading Style Sheets): CSS is employed to style and visually enhance the game interface, ensuring a visually appealing and cohesive design across different devices and screen sizes.
+- **CSS (Cascading Style Sheets)**: CSS is employed to style and visually enhance the game interface, ensuring a visually appealing and cohesive design across different devices and screen sizes.
 
-3. JavaScript: As the core programming language of the web, JavaScript powers the interactive elements and gameplay logic of our memory game. It enables dynamic content generation, user interaction, and event handling.
+- **JavaScript**: As the core programming language of the web, JavaScript powers the interactive elements and gameplay logic of our memory game. It enables dynamic content generation, user interaction, and event handling.
 
-4. DOM (Document Object Model): The DOM is a programming interface for web documents, providing a structured representation of the game's HTML elements. JavaScript interacts with the DOM to dynamically update the game interface based on user actions and game events.
+- **DOM (Document Object Model)**: The DOM is a programming interface for web documents, providing a structured representation of the game's HTML elements. JavaScript interacts with the DOM to dynamically update the game interface based on user actions and game events.
 
-5. MVC (Model-View-Controller): Our game follows the MVC architectural pattern, separating the application logic into three interconnected components:
-   5.1 Model: Represents the data and state of the game, including the grid of cards, their statuses, and match logic.
+- **MVC (Model-View-Controller)**: Our game follows the MVC architectural pattern, separating the application logic into three interconnected components:
 
-   5.2 View: Renders the game interface based on the current state of the model, ensuring that changes in data are reflected visually to the player.
+  - **Model**: Represents the data and state of the game, including the grid of cards, their statuses, and match logic.
 
-   5.3 Controller: Handles user input and interaction, updating the model and view accordingly to maintain the game's state and flow.
+  - **View**: Renders the game interface based on the current state of the model, ensuring that changes in data are reflected visually to the player.
+
+  - **Controller**: Handles user input and interaction, updating the model and view accordingly to maintain the game's state and flow.
 
 ## How to Play
 
@@ -36,6 +37,10 @@ The rules of the game are simple yet engaging:
 2. Gameplay: Players will be presented with a grid of cards, each containing a hidden photo of a tourist attraction. Players can click on any two cards to reveal the photos underneath. If the photos match, the cards diasppear. If not, the cards are flipped face-down again, and players must try to remember the locations of the photos for future turns.
 
 3. Victory: The game is won when all pairs of tourist attraction photos have been successfully matched.
+
+## Game Link
+
+You can play the memory game [here](memory-game-gamma-six.vercel.app).
 
 ## Next Steps
 
