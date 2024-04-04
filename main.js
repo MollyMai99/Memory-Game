@@ -142,6 +142,14 @@ function checkForWin() {
 }
 
 function render() {
-  scoreDisplay.textContent = `Pairs you matched: ${cardsWon.length}`;
+  renderResult();
+  renderScore();
+}
+
+function renderResult() {
   resultDisplay.textContent = resultMessage;
+}
+
+function renderScore() {
+  scoreDisplay.textContent = `Pairs you matched: ${cardsWon.length}`;
 }
