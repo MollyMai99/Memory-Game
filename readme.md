@@ -21,10 +21,11 @@ Our memory game utilizes a combination of modern web technologies and methodolog
 4. DOM (Document Object Model): The DOM is a programming interface for web documents, providing a structured representation of the game's HTML elements. JavaScript interacts with the DOM to dynamically update the game interface based on user actions and game events.
 
 5. MVC (Model-View-Controller): Our game follows the MVC architectural pattern, separating the application logic into three interconnected components:
+   5.1 Model: Represents the data and state of the game, including the grid of cards, their statuses, and match logic.
 
-5.1 Model: Represents the data and state of the game, including the grid of cards, their statuses, and match logic.
-5.2 View: Renders the game interface based on the current state of the model, ensuring that changes in data are reflected visually to the player.
-5.3 Controller: Handles user input and interaction, updating the model and view accordingly to maintain the game's state and flow.
+   5.2 View: Renders the game interface based on the current state of the model, ensuring that changes in data are reflected visually to the player.
+
+   5.3 Controller: Handles user input and interaction, updating the model and view accordingly to maintain the game's state and flow.
 
 ## How to Play
 
