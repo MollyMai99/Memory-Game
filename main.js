@@ -33,6 +33,8 @@ const resultMessages = {
   gameOver: "Times up! Game over!",
 };
 
+const timeLimit = 30;
+
 /*----- state variables -----*/
 // store two cards chose by player
 let cardsChosen;
@@ -189,9 +191,7 @@ function startTimer() {
 }
 
 function checkGameOver() {
-  console.log(timerSeconds);
-  console.log("gameover");
-  if (timerSeconds === 30) {
+  if (timerSeconds === timeLimit) {
     removeBoard();
     stopTimer();
     resultMessage = resultMessages.gameOver;
