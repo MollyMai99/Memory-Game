@@ -65,7 +65,7 @@ const cardArrayHard = [
   5. match all cards, finish the game;
 */
 const resultMessages = {
-  playerChooseLevel: "Please choose difficulty level.",
+  playerChooseLevel: "Welcome! Please choose difficulty level.",
   preGame: "Press 'Start Game' button to start!",
   startGame: "Game start! Choose two cards.",
   sameCard: "You clicked the same card! Choose again!",
@@ -139,7 +139,7 @@ function startGame() {
 }
 
 function initialize() {
-  chooseLevel();
+  // chooseLevel();
   shuffleCard();
   createBoard();
   initTemVariables();
