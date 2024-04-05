@@ -25,11 +25,12 @@ const cardArray = [
 */
 const resultMessages = {
   preGame: "Press 'Start Game' button to start!",
-  startGame: "Game start! Choose two cards!",
+  startGame: "Game start! Choose two cards.",
   sameCard: "You clicked the same card! Choose again!",
-  match: "You found a match! Continue!",
+  match: "You found a match! Continue.",
   wrongMatch: "Wrong match! Try again!",
-  win: "Congratulations! You matched all the cards!",
+  win: "Congratulations! You matched all the cards.s",
+  gameOver: "Times up! Game over!",
 };
 
 /*----- state variables -----*/
@@ -177,13 +178,25 @@ function renderScore() {
 //-------------------------------------
 
 function startTimer() {
-  clearInterval(timerInterval);
   timerSeconds = 0;
+  clearInterval(timerInterval);
   updateTimerDisplay();
   timerInterval = setInterval(function () {
     timerSeconds++;
+    checkGameOver();
     updateTimerDisplay();
   }, 1000);
+}
+
+function checkGameOver() {
+  console.log(timerSeconds);
+  console.log("gameover");
+  if (timerSeconds === 30) {
+    removeBoard();
+    stopTimer();
+    resultMessage = resultMessages.gameOver;
+    render();
+  }
 }
 
 function stopTimer() {
