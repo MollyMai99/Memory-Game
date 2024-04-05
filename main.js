@@ -1,7 +1,8 @@
 /*----- constants -----*/
 
 // twelve cards array
-const cardArray = [
+let cardArray = [];
+const cardArrayEasy = [
   { name: "1", img: "images/1.jpeg" },
   { name: "2", img: "images/2.jpeg" },
   { name: "3", img: "images/3.jpeg" },
@@ -15,6 +16,46 @@ const cardArray = [
   { name: "5", img: "images/5.jpeg" },
   { name: "6", img: "images/6.jpeg" },
 ];
+const cardArrayMedium = [
+  { name: "1", img: "images/1.jpeg" },
+  { name: "2", img: "images/2.jpeg" },
+  { name: "3", img: "images/3.jpeg" },
+  { name: "4", img: "images/4.jpeg" },
+  { name: "5", img: "images/5.jpeg" },
+  { name: "6", img: "images/6.jpeg" },
+  { name: "7", img: "images/7.jpeg" },
+  { name: "8", img: "images/8.jpeg" },
+  { name: "1", img: "images/1.jpeg" },
+  { name: "2", img: "images/2.jpeg" },
+  { name: "3", img: "images/3.jpeg" },
+  { name: "4", img: "images/4.jpeg" },
+  { name: "5", img: "images/5.jpeg" },
+  { name: "6", img: "images/6.jpeg" },
+  { name: "7", img: "images/7.jpeg" },
+  { name: "8", img: "images/8.jpeg" },
+];
+const cardArrayHard = [
+  { name: "1", img: "images/1.jpeg" },
+  { name: "2", img: "images/2.jpeg" },
+  { name: "3", img: "images/3.jpeg" },
+  { name: "4", img: "images/4.jpeg" },
+  { name: "5", img: "images/5.jpeg" },
+  { name: "6", img: "images/6.jpeg" },
+  { name: "7", img: "images/7.jpeg" },
+  { name: "8", img: "images/8.jpeg" },
+  { name: "9", img: "images/9.jpeg" },
+  { name: "10", img: "images/10.jpeg" },
+  { name: "1", img: "images/1.jpeg" },
+  { name: "2", img: "images/2.jpeg" },
+  { name: "3", img: "images/3.jpeg" },
+  { name: "4", img: "images/4.jpeg" },
+  { name: "5", img: "images/5.jpeg" },
+  { name: "6", img: "images/6.jpeg" },
+  { name: "7", img: "images/7.jpeg" },
+  { name: "8", img: "images/8.jpeg" },
+  { name: "9", img: "images/9.jpeg" },
+  { name: "10", img: "images/10.jpeg" },
+];
 
 /* five game status:
   1. game start;
@@ -24,16 +65,17 @@ const cardArray = [
   5. match all cards, finish the game;
 */
 const resultMessages = {
+  playerChooseLevel: "Please choose difficulty level.",
   preGame: "Press 'Start Game' button to start!",
   startGame: "Game start! Choose two cards.",
   sameCard: "You clicked the same card! Choose again!",
   match: "You found a match! Continue.",
   wrongMatch: "Wrong match! Try again!",
-  win: "Congratulations! You matched all the cards.s",
+  win: "Congratulations! You matched all the cards.",
   gameOver: "Times up! Game over!",
 };
 
-const timeLimit = 30;
+const timeLimit = 60;
 
 /*----- state variables -----*/
 // store two cards chose by player
@@ -43,7 +85,7 @@ let cardsChosenId;
 // store all matched cards
 let cardsWon = [];
 // show game status
-let resultMessage = resultMessages.preGame;
+let resultMessage = resultMessages.playerChooseLevel;
 
 let timerInterval;
 let timerSeconds;
@@ -58,19 +100,50 @@ const scoreDisplay = document.querySelector("#score");
 startGameBtn.addEventListener("click", startGame);
 
 /*----- functions -----*/
+chooseLevel();
 
-function initialize() {
-  shuffleCard();
-  createBoard();
-  initTemVariables();
+function chooseLevel() {
+  const levelButtons = document.querySelectorAll(".chooseLevel");
   render();
+  levelButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const level = this.value;
+      // console.log(level);
+      if (level === "easy") {
+        cardArray = cardArrayEasy;
+        // console.log(cardArray);
+      } else if (level === "medium") {
+        cardArray = cardArrayMedium;
+        // console.log(cardArray);
+      } else if (level === "hard") {
+        cardArray = cardArrayHard;
+        // console.log(cardArray);
+      }
+      this.style.backgroundColor = "yellow";
+      resultMessage = resultMessages.preGame;
+      render();
+    });
+  });
 }
 
 function startGame() {
   resultMessage = resultMessages.startGame;
+  const levelButtons = document.querySelectorAll(".chooseLevel");
+  levelButtons.forEach((button) => {
+    button.style.backgroundColor = "initial";
+  });
+
   startTimer();
   removeBoard();
   initialize();
+}
+
+function initialize() {
+  chooseLevel();
+  shuffleCard();
+  createBoard();
+  initTemVariables();
+  render();
 }
 
 function removeBoard() {
