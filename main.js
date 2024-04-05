@@ -24,6 +24,7 @@ const cardArray = [
   5. match all cards, finish the game;
 */
 const resultMessages = {
+  preGame: "Press 'Start Game' button to start!",
   startGame: "Game start! Choose two cards!",
   sameCard: "You clicked the same card! Choose again!",
   match: "You found a match! Continue!",
@@ -39,23 +40,41 @@ let cardsChosenId;
 // store all matched cards
 let cardsWon = [];
 // show game status
-let resultMessage = resultMessages.startGame;
+let resultMessage = resultMessages.preGame;
+
+let timerInterval;
+let timerSeconds;
 
 /*----- cached elements  -----*/
+const startGameBtn = document.querySelector("#startGame");
 const grid = document.querySelector(".grid");
 const resultDisplay = document.querySelector("#result");
 const scoreDisplay = document.querySelector("#score");
 
 /*----- event listeners -----*/
+startGameBtn.addEventListener("click", startGame);
 
 /*----- functions -----*/
-initialize();
 
 function initialize() {
   shuffleCard();
   createBoard();
   initTemVariables();
   render();
+}
+
+function startGame() {
+  resultMessage = resultMessages.startGame;
+  startTimer();
+  removeBoard();
+  initialize();
+}
+
+function removeBoard() {
+  const removeBoardcards = document.querySelectorAll("img");
+  removeBoardcards.forEach(function (imgElement) {
+    imgElement.parentNode.removeChild(imgElement);
+  });
 }
 
 function initTemVariables() {
@@ -138,6 +157,7 @@ function removeCardEvent(cards) {
 function checkForWin() {
   if (cardsWon.length === cardArray.length / 2) {
     resultMessage = resultMessages.win;
+    stopTimer();
   }
 }
 
@@ -152,4 +172,33 @@ function renderResult() {
 
 function renderScore() {
   scoreDisplay.textContent = `Pairs you matched: ${cardsWon.length}`;
+}
+
+//-------------------------------------
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerSeconds = 0;
+  updateTimerDisplay();
+  timerInterval = setInterval(function () {
+    timerSeconds++;
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+function updateTimerDisplay() {
+  const timerDisplayElement = document.getElementById("timer");
+  timerDisplayElement.textContent = formatTime(timerSeconds);
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+    .toString()
+    .padStart(2, "0")}`;
 }
