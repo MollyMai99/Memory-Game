@@ -109,21 +109,25 @@ function chooseLevel() {
     button.addEventListener("click", function () {
       const level = this.value;
       // console.log(level);
-      if (level === "easy") {
-        cardArray = cardArrayEasy;
-        // console.log(cardArray);
-      } else if (level === "medium") {
-        cardArray = cardArrayMedium;
-        // console.log(cardArray);
-      } else if (level === "hard") {
-        cardArray = cardArrayHard;
-        // console.log(cardArray);
-      }
+      distributeCardArray(level);
       this.style.backgroundColor = "yellow";
       resultMessage = resultMessages.preGame;
       render();
     });
   });
+}
+
+function distributeCardArray(level) {
+  if (level === "easy") {
+    cardArray = cardArrayEasy;
+    // console.log(cardArray);
+  } else if (level === "medium") {
+    cardArray = cardArrayMedium;
+    // console.log(cardArray);
+  } else if (level === "hard") {
+    cardArray = cardArrayHard;
+    // console.log(cardArray);
+  }
 }
 
 function startGame() {
