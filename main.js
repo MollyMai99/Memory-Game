@@ -85,7 +85,9 @@ let cardsChosenId;
 // store all matched cards
 let cardsWon = [];
 // show game status
-let resultMessage = resultMessages.playerChooseLevel;
+
+// let resultMessage = resultMessages.playerChooseLevel;
+let resultMessage;
 
 let timerInterval;
 let timerSeconds;
@@ -99,10 +101,15 @@ const scoreDisplay = document.querySelector("#score");
 /*----- event listeners -----*/
 startGameBtn.addEventListener("click", startGame);
 
+function changeResultMessage(message) {
+  resultMessage = message;
+}
+
 /*----- functions -----*/
 chooseLevel();
 
 function chooseLevel() {
+  changeResultMessage(resultMessages.playerChooseLevel);
   const levelButtons = document.querySelectorAll(".chooseLevel");
   render();
   levelButtons.forEach((button) => {
@@ -111,7 +118,8 @@ function chooseLevel() {
       // console.log(level);
       distributeCardArray(level);
       this.style.backgroundColor = "yellow";
-      resultMessage = resultMessages.preGame;
+      // resultMessage = resultMessages.preGame;
+      changeResultMessage(resultMessages.preGame);
       render();
     });
   });
@@ -131,7 +139,8 @@ function distributeCardArray(level) {
 }
 
 function startGame() {
-  resultMessage = resultMessages.startGame;
+  // resultMessage = resultMessages.startGame;
+  changeResultMessage(resultMessages.startGame);
   const levelButtons = document.querySelectorAll(".chooseLevel");
   levelButtons.forEach((button) => {
     button.style.backgroundColor = "initial";
@@ -184,7 +193,7 @@ function flipCard() {
 
   // if player choose two cards, call checkForMatch function
   if (cardsChosen.length === 2) {
-    setTimeout(checkForMatch, 600);
+    setTimeout(checkForMatch, 450);
   }
 }
 
@@ -196,19 +205,22 @@ function checkForMatch() {
   // condition 1: if choose the same card, unflip the card
   if (optionOneId == optionTwoId) {
     unFlipCard(cards);
-    resultMessage = resultMessages.sameCard;
+    // resultMessage = resultMessages.sameCard;
+    changeResultMessage(resultMessages.sameCard);
   }
   // condition 2: if two cards match, set white card and remove card eventlistener
   else if (cardsChosen[0] === cardsChosen[1]) {
     setWhiteCard(cards);
     removeCardEvent(cards);
     cardsWon.push(cardsChosen);
-    resultMessage = resultMessages.match;
+    // resultMessage = resultMessages.match;
+    changeResultMessage(resultMessages.match);
   }
   // condition 3: if two cards don't match, unflip cards
   else {
     unFlipCard(cards);
-    resultMessage = resultMessages.wrongMatch;
+    // resultMessage = resultMessages.wrongMatch;
+    changeResultMessage(resultMessages.wrongMatch);
   }
 
   initTemVariables();
@@ -236,7 +248,8 @@ function removeCardEvent(cards) {
 
 function checkForWin() {
   if (cardsWon.length === cardArray.length / 2) {
-    resultMessage = resultMessages.win;
+    // resultMessage = resultMessages.win;
+    changeResultMessage(resultMessages.win);
     stopTimer();
   }
 }
@@ -254,7 +267,7 @@ function renderScore() {
   scoreDisplay.textContent = `Pairs you matched: ${cardsWon.length}`;
 }
 
-//-------------------------------------
+// timer function
 
 function startTimer() {
   timerSeconds = 0;
@@ -271,7 +284,8 @@ function checkGameOver() {
   if (timerSeconds === timeLimit) {
     removeBoard();
     stopTimer();
-    resultMessage = resultMessages.gameOver;
+    // resultMessage = resultMessages.gameOver;
+    changeResultMessage(resultMessages.gameOver);
     render();
   }
 }
