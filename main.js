@@ -33,9 +33,10 @@ const cardArrayTotal = [
   4. wrong match;
   5. match all cards, finish the game;
 */
+const timeLimit = 45;
+
 const resultMessages = {
-  playerChooseLevel:
-    "Choose one difficulty level. Each round you have 50 seconds to finish.",
+  playerChooseLevel: `Choose one difficulty level. Each round you have ${timeLimit} seconds to finish.`,
   preGame: "Press 'Start Game' button to start!",
   startGame: "Game start! Choose two cards.",
   sameCard: "You clicked the same card! Choose again!",
@@ -44,8 +45,6 @@ const resultMessages = {
   win: "Congratulations! You matched all the cards.",
   gameOver: "Times up! Game over!",
 };
-
-const timeLimit = 50;
 
 /*----- state variables -----*/
 // store two cards chose by player
@@ -155,7 +154,7 @@ function flipCard() {
 
   // if player choose two cards, call checkForMatch function
   if (cardsChosen.length === 2) {
-    setTimeout(checkForMatch, 450);
+    setTimeout(checkForMatch, 420);
   }
 }
 
