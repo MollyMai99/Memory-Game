@@ -75,7 +75,7 @@ const resultMessages = {
   gameOver: "Times up! Game over!",
 };
 
-const timeLimit = 60;
+const timeLimit = 50;
 
 /*----- state variables -----*/
 // store two cards chose by player
@@ -132,7 +132,7 @@ function startGame() {
   levelButtons.forEach((button) => {
     button.style.backgroundColor = "initial";
   });
-
+  cardsWon = [];
   startTimer();
   removeBoard();
   initialize();
