@@ -33,7 +33,7 @@ const cardArrayTotal = [
   4. wrong match;
   5. match all cards, finish the game;
 */
-const timeLimit = 45;
+const timeLimit = 35;
 
 const resultMessages = {
   playerChooseLevel: `Choose one difficulty level. Each round you have ${timeLimit} seconds to finish.`,
@@ -69,26 +69,26 @@ const scoreDisplay = document.querySelector("#score");
 /*----- event listeners -----*/
 startGameBtn.addEventListener("click", startGame);
 
-function changeResultMessage(message) {
-  resultMessage = message;
-}
-
 /*----- functions -----*/
 chooseLevel();
 
 function chooseLevel() {
   changeResultMessage(resultMessages.playerChooseLevel);
   const levelButtons = document.querySelectorAll(".chooseLevel");
-  render();
+  renderResult();
   levelButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const level = this.value;
+      this.style.backgroundColor = "grey";
       distributeCards(level);
-      this.style.backgroundColor = "yellow";
       changeResultMessage(resultMessages.preGame);
-      render();
+      renderResult();
     });
   });
+}
+
+function changeResultMessage(message) {
+  resultMessage = message;
 }
 
 function distributeCards(level) {
@@ -110,15 +110,19 @@ function startGame() {
   cardsWon = [];
   startTimer();
   removeBoard();
-  initialize();
-}
-
-function initialize() {
   shuffleCard();
   createBoard();
   initTemVariables();
   render();
+  // initialize();
 }
+
+// function initialize() {
+//   shuffleCard();
+//   createBoard();
+//   initTemVariables();
+//   render();
+// }
 
 function removeBoard() {
   const removeBoardcards = document.querySelectorAll("img");
