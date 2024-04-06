@@ -1,8 +1,7 @@
 /*----- constants -----*/
+const timeLimit = 35;
 
 // twelve cards array
-let cardArray = [];
-
 const cardArrayTotal = [
   { name: "1", img: "images/1.jpeg" },
   { name: "2", img: "images/2.jpeg" },
@@ -26,15 +25,6 @@ const cardArrayTotal = [
   { name: "10", img: "images/10.jpeg" },
 ];
 
-/* five game status:
-  1. game start;
-  2. choose the same card;
-  3. match two cards;
-  4. wrong match;
-  5. match all cards, finish the game;
-*/
-const timeLimit = 35;
-
 const resultMessages = {
   playerChooseLevel: `Choose one difficulty level. Each round you have ${timeLimit} seconds to finish.`,
   preGame: "Press 'Start Game' button to start!",
@@ -47,24 +37,27 @@ const resultMessages = {
 };
 
 /*----- state variables -----*/
-// store two cards chose by player
-let cardsChosen;
-// store two cards ID chose by player
-let cardsChosenId;
+// show game status
+let resultMessage;
+
+let cardArray = [];
 // store all matched cards
 let cardsWon = [];
-// show game status
-
-let resultMessage;
+// store two cards chose by player
+let cardsChosen = [];
+// store two cards ID chose by player
+let cardsChosenId = [];
 
 let timerInterval;
 let timerSeconds;
 
 /*----- cached elements  -----*/
+const resultDisplay = document.querySelector("#result");
+const levelButtons = document.querySelectorAll(".chooseLevel");
 const startGameBtn = document.querySelector("#startGame");
 const grid = document.querySelector(".grid");
-const resultDisplay = document.querySelector("#result");
 const scoreDisplay = document.querySelector("#score");
+const timerDisplayElement = document.getElementById("timer");
 
 /*----- event listeners -----*/
 startGameBtn.addEventListener("click", startGame);
@@ -74,7 +67,6 @@ chooseLevel();
 
 function chooseLevel() {
   changeResultMessage(resultMessages.playerChooseLevel);
-  const levelButtons = document.querySelectorAll(".chooseLevel");
   renderResult();
   levelButtons.forEach((button) => {
     button.addEventListener("click", function () {
@@ -103,7 +95,7 @@ function distributeCards(level) {
 
 function startGame() {
   changeResultMessage(resultMessages.startGame);
-  const levelButtons = document.querySelectorAll(".chooseLevel");
+  // const levelButtons = document.querySelectorAll(".chooseLevel");
   levelButtons.forEach((button) => {
     button.style.backgroundColor = "initial";
   });
@@ -158,7 +150,7 @@ function flipCard() {
 
   // if player choose two cards, call checkForMatch function
   if (cardsChosen.length === 2) {
-    setTimeout(checkForMatch, 420);
+    setTimeout(checkForMatch, 400);
   }
 }
 
@@ -255,7 +247,7 @@ function stopTimer() {
 }
 
 function updateTimerDisplay() {
-  const timerDisplayElement = document.getElementById("timer");
+  // const timerDisplayElement = document.getElementById("timer");
   timerDisplayElement.textContent = formatTime(timerSeconds);
 }
 
