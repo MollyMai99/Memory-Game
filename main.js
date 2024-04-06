@@ -2,21 +2,14 @@
 
 // twelve cards array
 let cardArray = [];
-const cardArrayEasy = [
+
+const cardArrayTotal = [
   { name: "1", img: "images/1.jpeg" },
   { name: "2", img: "images/2.jpeg" },
   { name: "3", img: "images/3.jpeg" },
   { name: "4", img: "images/4.jpeg" },
   { name: "5", img: "images/5.jpeg" },
   { name: "6", img: "images/6.jpeg" },
-  { name: "1", img: "images/1.jpeg" },
-  { name: "2", img: "images/2.jpeg" },
-  { name: "3", img: "images/3.jpeg" },
-  { name: "4", img: "images/4.jpeg" },
-  { name: "5", img: "images/5.jpeg" },
-  { name: "6", img: "images/6.jpeg" },
-];
-const cardArrayMedium = [
   { name: "1", img: "images/1.jpeg" },
   { name: "2", img: "images/2.jpeg" },
   { name: "3", img: "images/3.jpeg" },
@@ -25,34 +18,10 @@ const cardArrayMedium = [
   { name: "6", img: "images/6.jpeg" },
   { name: "7", img: "images/7.jpeg" },
   { name: "8", img: "images/8.jpeg" },
-  { name: "1", img: "images/1.jpeg" },
-  { name: "2", img: "images/2.jpeg" },
-  { name: "3", img: "images/3.jpeg" },
-  { name: "4", img: "images/4.jpeg" },
-  { name: "5", img: "images/5.jpeg" },
-  { name: "6", img: "images/6.jpeg" },
-  { name: "7", img: "images/7.jpeg" },
-  { name: "8", img: "images/8.jpeg" },
-];
-const cardArrayHard = [
-  { name: "1", img: "images/1.jpeg" },
-  { name: "2", img: "images/2.jpeg" },
-  { name: "3", img: "images/3.jpeg" },
-  { name: "4", img: "images/4.jpeg" },
-  { name: "5", img: "images/5.jpeg" },
-  { name: "6", img: "images/6.jpeg" },
   { name: "7", img: "images/7.jpeg" },
   { name: "8", img: "images/8.jpeg" },
   { name: "9", img: "images/9.jpeg" },
   { name: "10", img: "images/10.jpeg" },
-  { name: "1", img: "images/1.jpeg" },
-  { name: "2", img: "images/2.jpeg" },
-  { name: "3", img: "images/3.jpeg" },
-  { name: "4", img: "images/4.jpeg" },
-  { name: "5", img: "images/5.jpeg" },
-  { name: "6", img: "images/6.jpeg" },
-  { name: "7", img: "images/7.jpeg" },
-  { name: "8", img: "images/8.jpeg" },
   { name: "9", img: "images/9.jpeg" },
   { name: "10", img: "images/10.jpeg" },
 ];
@@ -65,7 +34,8 @@ const cardArrayHard = [
   5. match all cards, finish the game;
 */
 const resultMessages = {
-  playerChooseLevel: "Welcome! Please choose difficulty level.",
+  playerChooseLevel:
+    "Choose one difficulty level. Each round you have 50 seconds to finish.",
   preGame: "Press 'Start Game' button to start!",
   startGame: "Game start! Choose two cards.",
   sameCard: "You clicked the same card! Choose again!",
@@ -86,7 +56,6 @@ let cardsChosenId;
 let cardsWon = [];
 // show game status
 
-// let resultMessage = resultMessages.playerChooseLevel;
 let resultMessage;
 
 let timerInterval;
@@ -115,31 +84,25 @@ function chooseLevel() {
   levelButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const level = this.value;
-      // console.log(level);
-      distributeCardArray(level);
+      distributeCards(level);
       this.style.backgroundColor = "yellow";
-      // resultMessage = resultMessages.preGame;
       changeResultMessage(resultMessages.preGame);
       render();
     });
   });
 }
 
-function distributeCardArray(level) {
+function distributeCards(level) {
   if (level === "easy") {
-    cardArray = cardArrayEasy;
-    // console.log(cardArray);
+    cardArray = cardArrayTotal.slice(0, 12);
   } else if (level === "medium") {
-    cardArray = cardArrayMedium;
-    // console.log(cardArray);
+    cardArray = cardArrayTotal.slice(0, 16);
   } else if (level === "hard") {
-    cardArray = cardArrayHard;
-    // console.log(cardArray);
+    cardArray = cardArrayTotal.slice(0, 20);
   }
 }
 
 function startGame() {
-  // resultMessage = resultMessages.startGame;
   changeResultMessage(resultMessages.startGame);
   const levelButtons = document.querySelectorAll(".chooseLevel");
   levelButtons.forEach((button) => {
@@ -152,7 +115,6 @@ function startGame() {
 }
 
 function initialize() {
-  // chooseLevel();
   shuffleCard();
   createBoard();
   initTemVariables();
@@ -205,7 +167,6 @@ function checkForMatch() {
   // condition 1: if choose the same card, unflip the card
   if (optionOneId == optionTwoId) {
     unFlipCard(cards);
-    // resultMessage = resultMessages.sameCard;
     changeResultMessage(resultMessages.sameCard);
   }
   // condition 2: if two cards match, set white card and remove card eventlistener
@@ -213,13 +174,11 @@ function checkForMatch() {
     setWhiteCard(cards);
     removeCardEvent(cards);
     cardsWon.push(cardsChosen);
-    // resultMessage = resultMessages.match;
     changeResultMessage(resultMessages.match);
   }
   // condition 3: if two cards don't match, unflip cards
   else {
     unFlipCard(cards);
-    // resultMessage = resultMessages.wrongMatch;
     changeResultMessage(resultMessages.wrongMatch);
   }
 
@@ -248,7 +207,6 @@ function removeCardEvent(cards) {
 
 function checkForWin() {
   if (cardsWon.length === cardArray.length / 2) {
-    // resultMessage = resultMessages.win;
     changeResultMessage(resultMessages.win);
     stopTimer();
   }
@@ -284,7 +242,6 @@ function checkGameOver() {
   if (timerSeconds === timeLimit) {
     removeBoard();
     stopTimer();
-    // resultMessage = resultMessages.gameOver;
     changeResultMessage(resultMessages.gameOver);
     render();
   }
