@@ -4,21 +4,29 @@ Welcome to the Tourist Attraction Memory Game! This is a classic memory matching
 
 ## Screenshot(s)!!
 
-![Homepage](readme/home.png)
-![Easy Level](readme/easy.png)
-![Medium Level](readme/medium.png)
-![Hard Level](readme/hard.png)
+- **Homepage**
+  ![Homepage](readme/home.png)
+
+- **Easy Level**
+  ![Easy Level](readme/easy.png)
+
+- **Medium Level**
+  ![Medium Level](readme/medium.png)
+
+- **Hard Level**
+  ![Hard Level](readme/hard.png)
 
 ## Features
 
--**Three Difficulty Levels**
+- **Three Difficulty Levels**
+  _Easy_: Perfect for beginners, featuring a smaller grid.
 
-_Easy_: Perfect for beginners, featuring a smaller grid.
-_Medium_: Moderate challenge with a larger grid.
-_Hard_: The largest grid with the most cards.
-Tourist Attraction Theme: Explore famous landmarks and destinations from around the world.
+  _Medium_: Moderate challenge with a larger grid.
 
--**Timer**: Keep track of your time as you match pairs of cards. Try to complete the game within the shortest time possible to challenge yourself.
+  _Hard_: The largest grid with the most cards.
+  Tourist Attraction Theme: Explore famous landmarks and destinations from around the world.
+
+- **Timer**: Keep track of your time as you match pairs of cards. Try to complete the game within the shortest time possible to challenge yourself.
 
 ## How to Play
 
