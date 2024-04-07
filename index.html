@@ -8,20 +8,28 @@
     <link rel="icon" type="image/png" href="images/blank.png" />
     <script defer src="main.js"></script>
   </head>
+
   <body>
     <h1 id="result"></h1>
 
-    <h2>Select Difficulty Level:</h2>
-    <button id="easy" class="chooseLevel" value="easy">Easy</button>
-    <button id="medium" class="chooseLevel" value="medium">Medium</button>
-    <button id="hard" class="chooseLevel" value="hard">Hard</button>
-    <br />
-    <button id="startGame">Start Game</button>
+    <div id="container">
+      <div class="box">
+        <p>Select Difficulty Level:</p>
+        <button id="easy" class="chooseLevel" value="easy">Easy</button>
+        <button id="medium" class="chooseLevel" value="medium">Medium</button>
+        <button id="hard" class="chooseLevel" value="hard">Hard</button>
+        <br />
+        <button id="startGame">Start Game</button>
+      </div>
 
-    <h2 id="score"></h2>
-    <h2 id="timer"></h2>
+      <div class="box">
+        <p id="score"></p>
+        <p id="timer"></p>
+      </div>
+    </div>
 
     <div class="grid"></div>
   </body>
+
   <footer>Created by MollyMai99 @Github in 2024</footer>
 </html>
