@@ -27,9 +27,14 @@ Welcome to the Tourist Attraction Memory Game! This is a classic memory matching
   _Medium_: Moderate challenge with a larger grid.
 
   _Hard_: The largest grid with the most cards.
-  Tourist Attraction Theme: Explore famous landmarks and destinations from around the world.
 
-- **Timer**: Keep track of your time as you match pairs of cards. Try to complete the game within the shortest time possible to challenge yourself.
+- **Tourist Attraction Theme**
+
+Explore famous landmarks and destinations from around the world.
+
+- **Timer**
+
+Keep track of your time as you match pairs of cards. Try to complete the game within the shortest time possible to challenge yourself.
 
 ## How to Play
 
