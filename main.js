@@ -95,7 +95,6 @@ function distributeCards(level) {
 
 function startGame() {
   changeResultMessage(resultMessages.startGame);
-  // const levelButtons = document.querySelectorAll(".chooseLevel");
   levelButtons.forEach((button) => {
     button.style.backgroundColor = "initial";
   });
@@ -106,15 +105,7 @@ function startGame() {
   createBoard();
   initTemVariables();
   render();
-  // initialize();
 }
-
-// function initialize() {
-//   shuffleCard();
-//   createBoard();
-//   initTemVariables();
-//   render();
-// }
 
 function removeBoard() {
   const removeBoardcards = document.querySelectorAll("img");
@@ -133,13 +124,13 @@ function shuffleCard() {
 }
 
 function createBoard() {
-  for (let i = 0; i < cardArray.length; i++) {
+  cardArray.forEach((element, i) => {
     const card = document.createElement("img");
     card.setAttribute("src", "images/blank.png");
     card.setAttribute("data-id", i);
     card.addEventListener("click", flipCard);
     grid.appendChild(card);
-  }
+  });
 }
 
 function flipCard() {
@@ -150,7 +141,7 @@ function flipCard() {
 
   // if player choose two cards, call checkForMatch function
   if (cardsChosen.length === 2) {
-    setTimeout(checkForMatch, 400);
+    setTimeout(checkForMatch, 420);
   }
 }
 
@@ -247,7 +238,6 @@ function stopTimer() {
 }
 
 function updateTimerDisplay() {
-  // const timerDisplayElement = document.getElementById("timer");
   timerDisplayElement.textContent = formatTime(timerSeconds);
 }
 
