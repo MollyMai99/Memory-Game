@@ -2,7 +2,7 @@
 
 Welcome to the Tourist Attraction Memory Game! This is a classic memory matching game where players flip cards to reveal images of famous tourist attractions. The goal is to match pairs of identical attraction cards within a limited time. With three difficulty levels and a variety of tourist attractions to explore, this game offers entertainment for players of all ages.
 
-## Screenshot(s)!!
+## Screenshots
 
 - **Homepage**
   ![Homepage](readme/home.png)
@@ -19,6 +19,7 @@ Welcome to the Tourist Attraction Memory Game! This is a classic memory matching
 ## Features
 
 - **Three Difficulty Levels**
+
   _Easy_: Perfect for beginners, featuring a smaller grid.
 
   _Medium_: Moderate challenge with a larger grid.
