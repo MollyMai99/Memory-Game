@@ -1,12 +1,32 @@
 # Memory Game
 
-## Game Background
-
-Welcome to our memory game, where players are invited to test their memory skills while exploring iconic tourist attractions from around the world. In this engaging and entertaining game, players will embark on a journey to match pairs of stunning tourist attraction photos, all while enjoying a fun and immersive experience.
+Welcome to the Tourist Attraction Memory Game! This is a classic memory matching game where players flip cards to reveal images of famous tourist attractions. The goal is to match pairs of identical attraction cards within a limited time. With three difficulty levels and a variety of tourist attractions to explore, this game offers entertainment for players of all ages.
 
 ## Screenshot(s)!!
 
-Images of your actual game.
+![Homepage](readme/home.png)
+![Easy Level](readme/easy.png)
+![Medium Level](readme/medium.png)
+![Hard Level](readme/hard.png)
+
+## Features
+
+-**Three Difficulty Levels**
+
+_Easy_: Perfect for beginners, featuring a smaller grid.
+_Medium_: Moderate challenge with a larger grid.
+_Hard_: The largest grid with the most cards.
+Tourist Attraction Theme: Explore famous landmarks and destinations from around the world.
+
+-**Timer**: Keep track of your time as you match pairs of cards. Try to complete the game within the shortest time possible to challenge yourself.
+
+## How to Play
+
+1. Choose a Difficulty Level: Easy, Medium, or Hard.
+2. Click Any Two Cards to reveal the images underneath.
+3. If the Images Match, the cards disappear. If not, the cards flip back over.
+4. Continue Flipping Card Pairs until all matches are found.
+5. Complete the Game Within the Allowed Time to win.
 
 ## Technologies Used
 
@@ -28,20 +48,10 @@ Our memory game utilizes a combination of modern web technologies and methodolog
 
   - **Controller**: Handles user input and interaction, updating the model and view accordingly to maintain the game's state and flow.
 
-## How to Play
-
-The rules of the game are simple yet engaging:
-
-- **Objective**: The objective of the game is to match pairs of identical tourist attraction photos by flipping over cards to find their corresponding matches.
-
-- **Gameplay**: Players will be presented with a grid of cards, each containing a hidden photo of a tourist attraction. Players can click on any two cards to reveal the photos underneath. If the photos match, the cards diasppear. If not, the cards are flipped face-down again, and players must try to remember the locations of the photos for future turns.
-
-- **Victory**: The game is won when all pairs of tourist attraction photos have been successfully matched.
-
 ## Game Link
 
 You can play the memory game [here](https://memory-game-gamma-six.vercel.app/).
 
 ## Next Steps
 
-Challenge Levels: As players progress through the game, the grid size and number of cards will increase, presenting a greater challenge to memory and concentration.
+Add more themes for players to choose from.
