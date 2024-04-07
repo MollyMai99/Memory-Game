@@ -8,18 +8,8 @@ const cardArrayTotal = [
   { name: "4", img: "images/4.jpeg" },
   { name: "5", img: "images/5.jpeg" },
   { name: "6", img: "images/6.jpeg" },
-  { name: "1", img: "images/1.jpeg" },
-  { name: "2", img: "images/2.jpeg" },
-  { name: "3", img: "images/3.jpeg" },
-  { name: "4", img: "images/4.jpeg" },
-  { name: "5", img: "images/5.jpeg" },
-  { name: "6", img: "images/6.jpeg" },
   { name: "7", img: "images/7.jpeg" },
   { name: "8", img: "images/8.jpeg" },
-  { name: "7", img: "images/7.jpeg" },
-  { name: "8", img: "images/8.jpeg" },
-  { name: "9", img: "images/9.jpeg" },
-  { name: "10", img: "images/10.jpeg" },
   { name: "9", img: "images/9.jpeg" },
   { name: "10", img: "images/10.jpeg" },
 ];
@@ -84,11 +74,14 @@ function changeResultMessage(message) {
 
 function distributeCards(level) {
   if (level === "easy") {
-    cardArray = cardArrayTotal.slice(0, 12);
+    cardArray = [...cardArrayTotal.slice(0, 6), ...cardArrayTotal.slice(0, 6)];
   } else if (level === "medium") {
-    cardArray = cardArrayTotal.slice(0, 16);
+    cardArray = [...cardArrayTotal.slice(0, 8), ...cardArrayTotal.slice(0, 8)];
   } else if (level === "hard") {
-    cardArray = cardArrayTotal.slice(0, 20);
+    cardArray = [
+      ...cardArrayTotal.slice(0, 10),
+      ...cardArrayTotal.slice(0, 10),
+    ];
   }
 }
 
