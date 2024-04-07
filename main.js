@@ -1,7 +1,6 @@
 /*----- constants -----*/
 const timeLimit = 35;
 
-// twelve cards array
 const cardArrayTotal = [
   { name: "1", img: "images/1.jpeg" },
   { name: "2", img: "images/2.jpeg" },
@@ -152,19 +151,19 @@ function checkForMatch() {
 
   // condition 1: if choose the same card, unflip the card
   if (optionOneId == optionTwoId) {
-    unFlipCard(cards);
+    updateCards(cards, "images/blank.png");
     changeResultMessage(resultMessages.sameCard);
   }
   // condition 2: if two cards match, set white card and remove card eventlistener
   else if (cardsChosen[0] === cardsChosen[1]) {
-    setWhiteCard(cards);
+    updateCards(cards, "images/white.png");
     removeCardEvent(cards);
     cardsWon.push(cardsChosen);
     changeResultMessage(resultMessages.match);
   }
   // condition 3: if two cards don't match, unflip cards
   else {
-    unFlipCard(cards);
+    updateCards(cards, "images/blank.png");
     changeResultMessage(resultMessages.wrongMatch);
   }
 
@@ -173,15 +172,9 @@ function checkForMatch() {
   render();
 }
 
-function unFlipCard(cards) {
+function updateCards(cards, src) {
   cardsChosenId.forEach((i) => {
-    cards[i].setAttribute("src", "images/blank.png");
-  });
-}
-
-function setWhiteCard(cards) {
-  cardsChosenId.forEach((i) => {
-    cards[i].setAttribute("src", "images/white.png");
+    cards[i].setAttribute("src", src);
   });
 }
 
