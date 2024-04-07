@@ -30,11 +30,11 @@ Welcome to the Tourist Attraction Memory Game! This is a classic memory matching
 
 - **Tourist Attraction Theme**
 
-Explore famous landmarks and destinations from around the world.
+  Explore famous landmarks and destinations from around the world.
 
 - **Timer**
 
-Keep track of your time as you match pairs of cards. Try to complete the game within the shortest time possible to challenge yourself.
+  Keep track of your time as you match pairs of cards. Try to complete the game within the shortest time possible to challenge yourself.
 
 ## How to Play
 
