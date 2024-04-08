@@ -71,3 +71,5 @@ You can play the memory game [here](https://memory-game-gamma-six.vercel.app/).
 ## Next Steps
 
 Add more themes for players to choose from.
+
+Beautify the game.
